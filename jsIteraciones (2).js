@@ -2,7 +2,7 @@ function Mostrar()
 {
 	var contador;
 	
-	contador=10;
+	contador=11;
 
 	while( contador >0)
 	{
