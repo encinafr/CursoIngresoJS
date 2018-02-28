@@ -1,91 +1,60 @@
-/*
-ingreso de alumnos , no sabemos cuantos alumnos hay, pedir nombre;
-cuantos alumnos ingrese
-*/
 function Mostrar()
 {
-	var nombre;
-	var cantidad=0;
-    var seguir="";
-    var promedio;
-    var nota;
-    var sumadenotas=0;
-    var sexo;
-    var sexof=0;
-    var sexom=0;
-    var varonesdesaprobados=0;
-    var nombremejornota=1;
-    var edad;
+	var numero;
+	var respuesta="si";
+	var contador=0;
+	var numerosPares=0;
+	var sumaNumeros=0;
+	var promedio;
+	var minimo;
+	var maximo;
 
-
-
-
-
-
-
-	while(seguir !='no')
+	while(respuesta == "si")
 	{
-		nombre = prompt("ingrese el nombre:");
-		cantidad ++;
-		edad = prompt("ingrese su edad");
-		edad = parseInt(edad);
-		if(edad<0 && edad>100)
-		{
-			edad = prompt("ingrese su edad");
-		    edad = parseInt(edad);
-		}
-		sexo = prompt("ingrese su sexo");
-		while(sexo !="f" && sexo !="m")
-		{
-			sexo = prompt("ingrese su sexo");
-			
+		contador++;
+		numero = prompt("Ingrese un número:");
+		numero = parseInt(numero);
 
+
+
+		while(numero < 0 || isNaN(numero)) // validacion de numero;
+		{
+			numero = prompt("Ingrese un número:");
+			numero = parseInt(numero);
 		}
-			if(sexo=="f")
+
+		sumaNumeros = sumaNumeros + numero;
+
+		if(numero%2==0 && numero !=0)// pares
+		{
+			numerosPares++;
+		}
+
+		if(contador==1) //maximo y minimo;
+		{
+			minimo = numero;
+			maximo = numero;
+		}
+		else
+		{
+			if(numero < minimo)
 			{
-				sexof ++;
+				minimo = numero;
 			}
-			else
+			if(numero > maximo)
 			{
-				sexom ++;
+				maximo = numero;
 			}
-
-		
-		nota=prompt("ingrese nota");
-		nota=parseInt(nota);
-		sumadenotas=sumadenotas+nota;
-		while(nota <0 || nota > 10)
-		{
-			nota=prompt("ingrese nota");
-			nota=parseInt(nota);
-
 		}
-		if(nota <4 && sexo =="m")
-		{
-           varonesdesaprobados++;
 
-		}
-		if(nota >1)
-		{
-              nombremejornota=nota;
-              nota=nombre;
-              if(!=(nombremejornota<nota))
-              {
-              	nota=nombre;
-              }
-		}
-		seguir = prompt("NO para salir");
-			
+		respuesta = prompt("Ingrese si para continuar:");
+
 	}
-	promedio= sumadenotas/cantidad;
-	document.write("<br>"+"son" + cantidad + " de alumno");
-	document.write("<br>"+"el promedio es: " + promedio + " de notas");
-	document.write("<br>"+"sexom:" + sexom +" sexof:" + sexof);
-	document.write("<br>"+"los varones desaprobados son:" + varonesdesaprobados);
-	document.write("<br>"+"el nombre de la mejor nota es:" + nota);
 
-	
+	promedio = sumaNumeros/contador;
 
-
-
+	document.write("Los pares son " + numerosPares);
+	document.write("<br> El promedio es " + promedio);
+	document.write("<br> La suma de todos los números es " + sumaNumeros);
+	document.write("<br> El número mínimo es " + minimo + " y el número máximo es " + maximo);
 }
